@@ -1,8 +1,17 @@
 <h2><%= @list.name %></h2>
 
-<%= form_for(@list) do |f| %>
-  <%= f.label  :name %>
+<ul>
+  <% @list.movies.each do |movie| %>
+    <div class="card">
+        <li> <%= image_tag "#{movie.poster_url}", class: "card-img"%></li>
+      <div class="card-header">
+        <li> <%= movie.title %></li>
+        <li> <%= movie.rating %></li>
+      </div>
+      <li> <%= movie.overview %></li>
+    </div>
+  <% end %>
+</ul>
 
-<% end %>
-<%=  link_to "Back to all lists", lists_path, class: "btn btn-primary"%>
-<%=  link_to "Create new Bookmark", new_list_bookmark_path(@list), class: "btn btn-primary"%>
+<%= link_to 'Back to all lists', lists_path, class: "btn btn-primary"%>
+<%= link_to 'add a movie', new_list_bookmark_path(@list), class: "btn btn-primary"%>
